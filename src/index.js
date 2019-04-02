@@ -1,14 +1,60 @@
-var faker = require('faker');
+const faker = require('faker');
 
+generateRandomNumberInRange = (integer, min, max) => {
+  if (!integer && (min && max))
+    return Math.random() * (max - min) + min;
+  if (integer && (min && max)) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min;
+  }
+  return 0;
+}
 
-/**
- * @todo Go through obj keys recursively
- * @body We need to go through the object keys recursively to ensure performance and optinization are kept
- * @param Object obj 
- */
-const generate = obj => {
+generateRandomNumber = (integer, max) => {
+  if (!integer && max)
+    return Math.random() * max;
+  if (integer && max) {
+    return Math.floor(Math.random() * max);
+  }
+  return 0;
+}
+
+const generateForNumbers = node => {
+  if (node.range) {
+    const { min, max } = node.range;
+    return generateRandomNumberInRange(node.integer, min, max);
+  }
+}
+
+const generatePerKey = (key, node) => {
+  switch (node.type) {
+    case 'number': {
+      if (node.value)
+        return node.value
+      return generateForNumbers(node);
+    }
+    case 'string': {
+      if (node.value)
+        return node.value
+      return null;
+    }
+    case 'faked': {
+      return faker.fake(node.value);
+    }
+  }
 
 }
 
+const goThroughKeys = obj => {
+  Object.keys(obj).forEach(key => {
+    obj[key] = generatePerKey(key, obj[key]);
+  });
+  return obj;
+}
 
-console.log(faker.fake("name: {{name.suffix}}"));
+const generate = obj => {
+  return goThroughKeys(obj);
+}
+
+module.exports.generate = generate;
