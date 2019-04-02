@@ -1,0 +1,17 @@
+{
+  "age": {
+    "type": "number",
+    "range": {
+      "min": 14,
+      "max": 99
+    }
+  },
+  "name": {
+    "type": "string",
+    "value": "Dave"
+  },
+  "address": {
+    "type": "faked",
+    "value": "{{address.streetAddress}}"
+  }
+}
