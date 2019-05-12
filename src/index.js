@@ -6,7 +6,7 @@ generateRandomNumberInRange = (integer, min, max) => {
   if (integer && (min && max)) {
     min = Math.ceil(min);
     max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min)) + min;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
   return 0;
 }
@@ -17,7 +17,9 @@ generateRandomNumber = (integer, max) => {
   if (integer && max) {
     return Math.floor(Math.random() * max);
   }
-  return 0;
+  if (!integer)
+    return Math.random();
+  return Math.floor(Math.random());
 }
 
 const generateForNumbers = node => {
@@ -25,6 +27,10 @@ const generateForNumbers = node => {
     const { min, max } = node.range;
     return generateRandomNumberInRange(node.integer, min, max);
   }
+  else if (node.max) {
+    return generateRandomNumber(node.integer, node.max);
+  }
+  else return generateRandomNumber(node.integer);
 }
 
 const generatePerKey = (key, node) => {
