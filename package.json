@@ -13,6 +13,7 @@
     "faker": "^4.1.0"
   },
   "devDependencies": {
+    "eslint": "^5.16.0",
     "jest": "^24.8.0"
   }
 }
