@@ -23,5 +23,8 @@ module.exports = {
         'Atomics': 'readonly',
         'SharedArrayBuffer': 'readonly'
     },
-    'rules': {}
+    'rules': {
+        "padding-line-between-statements": "error",
+        "newline-before-return": "error"
+    }
 };

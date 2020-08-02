@@ -25,5 +25,12 @@
     "address": {
         "type": "fake",
         "value": "{{address.streetAddress}}, {{address.city}}, {{address.countryCode}}"
+    },
+    "chancedBoolean": {
+        "type": "boolean",
+        "trueChance": 80
+    },
+    "randomBoolean": {
+        "type": "boolean"
     }
 }

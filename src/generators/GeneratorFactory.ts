@@ -3,6 +3,7 @@ import { NumberGenerator } from './NumberGenerator';
 import { IStructerObjectType } from '../interfaces/IStructerObject';
 import { StringGenerator } from './StringGenerator';
 import { FakerGenerator } from './FakerGenerator';
+import { BooleanGenerator } from './BooleanGenerator';
 
 export class GeneratorFactory {
     public getGenerator(type: IStructerObjectType): BaseGenerator {
@@ -12,10 +13,10 @@ export class GeneratorFactory {
             return new StringGenerator();
         } else if (type === 'fake') {
             return new FakerGenerator();
+        } else if (type === 'boolean') {
+            return new BooleanGenerator();
         } else {
-            console.log("nope... this ain't gonna work:", type);
-            // throw new Error('Incorrect type');
-            return new StringGenerator();
+            throw new Error('Incorrect type');
         }
     }
 }

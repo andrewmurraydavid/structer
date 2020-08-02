@@ -11,4 +11,5 @@ export interface IStructerObject {
     range?: IStructerObjectNumberRange;
     max?: number;
     integer?: boolean;
+    trueChance?: number;
 }

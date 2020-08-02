@@ -10,12 +10,14 @@ export class NumberGenerator extends BaseGenerator {
         if (node.value && typeof node.value === 'number') {
             return node.value;
         }
+
         return this.generateForNumbers(node);
     }
 
     private generateForNumbers = (node: IStructerObject) => {
         if (node.range) {
             const { min, max } = node.range;
+
             return this.generateRandomNumberInRange(!!node.integer, min, max);
         } else if (node.max) {
             return this.generateRandomNumber(!!node.integer, node.max);
@@ -27,8 +29,10 @@ export class NumberGenerator extends BaseGenerator {
         if (integer && min && max) {
             min = Math.ceil(min);
             max = Math.floor(max);
+
             return Math.floor(Math.random() * (max - min + 1)) + min;
         }
+
         return 0;
     };
     private generateRandomNumber = (integer: boolean, max?: number) => {
@@ -37,6 +41,7 @@ export class NumberGenerator extends BaseGenerator {
             return Math.floor(Math.random() * max);
         }
         if (!integer) return Math.random();
+
         return Math.floor(Math.random());
     };
 }
