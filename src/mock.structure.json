@@ -1,0 +1,29 @@
+{
+    "age": {
+        "type": "number",
+        "range": {
+            "min": 14,
+            "max": 99
+        },
+        "integer": true
+    },
+    "floatAge": {
+        "type": "number",
+        "range": {
+            "min": 14,
+            "max": 99
+        }
+    },
+    "name": {
+        "type": "string",
+        "value": "Dave"
+    },
+    "notRandom": {
+        "type": "number",
+        "value": 222
+    },
+    "address": {
+        "type": "fake",
+        "value": "{{address.streetAddress}}, {{address.city}}, {{address.countryCode}}"
+    }
+}
